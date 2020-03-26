@@ -7,7 +7,7 @@ class IncrementTest {
 
 
     @Test
-    fun incrementTest{
+    fun incrementTest() {
 
         var i = 1
         i += 1
