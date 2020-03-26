@@ -16,4 +16,14 @@ class IncrementTest {
     }
 
 
+    @Test
+    fun multiplicationTest() {
+
+        var i = 111
+        i += 12
+        assertEquals(2, 1)
+
+    }
+
+
 }
