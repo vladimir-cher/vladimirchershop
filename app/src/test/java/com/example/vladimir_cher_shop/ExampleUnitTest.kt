@@ -2,11 +2,6 @@ package com.example.vladimir_cher_shop
 
 import org.junit.Test
 
-import org.junit.Assert.*
-import java.lang.Math.round
-import java.lang.Math.sqrt
-import kotlin.math.sqrt
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -14,7 +9,7 @@ import kotlin.math.sqrt
  */
 class ExampleUnitTest {
 
-
+/*
     fun formatPrice(price: Int, measure: String, discount: Int): String {
         val discountPrice = price - (price * discount / 100)
     return "Цена товара - $price/$measure, скидка - $discount%, цена со скидкой - $discountPrice"
@@ -172,7 +167,125 @@ class ExampleUnitTest {
 
 
     val f = PriceFormat(100.24, "sd", 44)
+        */
+
+    //описываем предметную область
+    @Test
+    fun example() {
+
+        val murka = object {
+            //описываем состояние и поведение объекта
+            var isDreaming = false
+
+            fun goSleep() {
+                isDreaming = true
+            }
+
+            fun wakeUp() {
+                isDreaming = false
+            }
+
+            fun voice() {
+                if (isDreaming) {
+                    voiceWhenDreaming()
+                } else {
+                    voiceWhenWakedUp()
+                }
+            }
+
+            private fun voiceWhenDreaming() {
+                println("hrr")
+            }
+
+            private fun voiceWhenWakedUp() {
+                println("murr")
+            }
+
+        }
+        //для вызова действия объекта используется точечный синтаксис
+
+        //старый вариант вызова голоса
+
+        //здесь будет hrr
+        murka.voice()
+        //а здесь уже mur
+        murka.isDreaming = true
+        murka.voice()
+
+        //новый вариант вызова голоса
+        murka.wakeUp()
+        murka.voice()
+
+        murka.goSleep()
+        murka.voice()
+
+    }
 
 
+    @Test
+    fun internetShop() {
+
+        /*
+        val readmeFile = File("/README.md")
+
+        readmeFile.writeText("Hello World!")
+        */
+
+
+        //если конструктор один, слово конструктор можно не писать. класс с конструктором становится похож на просто функцию
+        class Product constructor(
+            private val price: Double,
+            private val discountInPercent: Int
+        ) {
+
+            /*
+           Полный синтаксис конструктора
+            private val price: Double
+            private val discountInPercent: Int
+
+            constructor(price: Double, discountInPercent: Int) {
+                this.price = price
+                this.discountInPercent = discountInPercent
+            }
+            */
+
+            fun printPrice() {
+                val discountPrice = price - (price * discountInPercent / 100)
+                println(discountPrice)
+            }
+
+        }
+
+        val iphoneCase = Product(price = 123.12, discountInPercent = 10)
+
+        iphoneCase.printPrice()
+
+        val samsungCase = Product(price = 155.99, discountInPercent = 15)
+
+        samsungCase.printPrice()
+
+
+        val list = listOf(1, 2, 3)
+        //лямбда функции
+        list.forEach({ int -> println(int) })
+
+
+        val priceFormatter: PriceFormatter = CleanKotlinPriceFormatter()
+
+        //
+        // val formattedIphoneCasePrice = priceFormatter.format(discountPrice)
+    }
+
+    interface PriceFormatter {
+
+        fun format(price: Double): String
+    }
+
+    class CleanKotlinPriceFormatter : PriceFormatter {
+
+        override fun format(price: Double): String {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+    }
 }
-
