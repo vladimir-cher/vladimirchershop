@@ -1,32 +1,51 @@
 package com.example.myapplication
 
-class ProductsPresenter(
-    private val view: ProductsView
-) {
+import moxy.MvpPresenter
+
+class ProductsPresenter : MvpPresenter<ProductsView>() {
 
     private val iphoneCase = Product(price = 123.5, salePercent = 30, productName = "IPhone Case")
     private val samsungCase = Product(price = 124.5, salePercent = 15, productName = "Samsung Case")
 
     private val products = listOf(iphoneCase, samsungCase)
 
-    fun pricePrint(){
-        view.print(iphoneCase.calcDiscountPrice())
+    private val model = CreateOrderModel()
+
+    fun checkFirstName(text: String) {
+        if (!checkSymbols(text)) model.firstName = text
+        viewState.showErrorForFirstName(checkSymbols(text))
+    }
+
+    fun checkSecondName(text: String) {
+        if (!checkSymbols(text)) model.secondName = text
+        viewState.showErrorForSecondName(checkSymbols(text))
+    }
+
+    fun checkMiddleName(text: String) {
+        if (!checkSymbols(text)) model.middleName = text
+        viewState.showErrorForMiddleName(checkSymbols(text))
+    }
+
+    private fun checkSymbols(text: String): Boolean = text.length < 3
+
+    fun pricePrint() {
+        viewState.print(iphoneCase.calcDiscountPrice())
 
         val allPrice: Double = 0.0
         products.forEach { product ->
-            view.print(product.calcDiscountPrice())
+            viewState.print(product.calcDiscountPrice())
         }
     }
 
-    fun productNamePrint(){
+    fun productNamePrint() {
         products.forEach { product ->
-            view.print(product.getProductName())
+            viewState.print(product.getProductName())
         }
     }
 
-    fun productNameAndPricePrint(){
+    fun productNameAndPricePrint() {
         products.forEach { product ->
-            view.print("${product.getProductName()}: ${product.calcDiscountPrice()}")
+            viewState.print("${product.getProductName()}: ${product.calcDiscountPrice()}")
         }
     }
 }
