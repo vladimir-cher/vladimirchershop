@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">vladimir-cher-shop</string>
+    <string name="checkout_header">Оформление заказа</string>
+    <string name="phone_hint">Телефон</string>
+    <string name="surname_hint">Фамилия</string>
+    <string name="name_hint">Имя</string>
+    <string name="contact_header">Ваши контактные данные</string>
+    <string name="submit_button">Подтвердить</string>
+    <string name="pay_type_header">Выберите способ оплаты</string>
+    <string name="discount_header">Скидка</string>
+    <string name="first_sum_header">Сумма заказа без скидки</string>
+    <string name="final_sum_header">Сумма со скидкой</string>
+    <string name="e_mail_hint">E-mail</string>
+    <string name="cash_radio_button_text">Наличными</string>
+    <string name="card_radio_button_text">Картой</string>
 </resources>

@@ -20,6 +20,10 @@ class Product
         return price - sale
     } //= price * (1 - salePercent / 100.0)
 
+    fun getSalePercent(): Int {
+        return this.salePercent
+    }
+
 
     fun getProductName(): String = productName
 }
