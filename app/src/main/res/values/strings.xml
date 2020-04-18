@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Магазин</string>
     <string name="checkout_header">Оформление заказа</string>
     <string name="checkout_sum">итого</string>
     <string name="checkoutHintPhone">Телефон</string>
