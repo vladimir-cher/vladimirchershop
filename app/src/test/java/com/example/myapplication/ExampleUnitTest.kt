@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import com.example.myapplication.model.Product
 import org.junit.Test
 
 class ExampleUnitTest {
@@ -13,8 +14,16 @@ class ExampleUnitTest {
 
 class Presenter {
 
-    private val iphoneCase = Product(price = 123.5, salePercent = 30, productName = "IPhone Case")
-    private val samsungCase = Product(price = 124.5, salePercent = 15, productName = "Samsung Case")
+    private val iphoneCase = Product(
+        price = 123.5,
+        salePercent = 30,
+        productName = "IPhone Case"
+    )
+    private val samsungCase = Product(
+        price = 124.5,
+        salePercent = 15,
+        productName = "Samsung Case"
+    )
 
     private val pricePrinter: PricePrinter = ConsolePricePrinter()
 

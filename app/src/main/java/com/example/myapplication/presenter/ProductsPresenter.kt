@@ -1,11 +1,21 @@
-package com.example.myapplication
+package com.example.myapplication.presenter
 
+import com.example.myapplication.model.CreateOrderModel
+import com.example.myapplication.model.Product
 import moxy.MvpPresenter
 
 class ProductsPresenter : MvpPresenter<ProductsView>() {
 
-    private val iphoneCase = Product(price = 123.5, salePercent = 30, productName = "IPhone Case")
-    private val samsungCase = Product(price = 124.5, salePercent = 15, productName = "Samsung Case")
+    private val iphoneCase = Product(
+        price = 123.5,
+        salePercent = 30,
+        productName = "IPhone Case"
+    )
+    private val samsungCase = Product(
+        price = 124.5,
+        salePercent = 15,
+        productName = "Samsung Case"
+    )
 
     private val products = listOf(iphoneCase, samsungCase)
 
