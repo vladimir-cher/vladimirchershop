@@ -3,10 +3,17 @@ package com.example.myapplication.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
+import com.example.myapplication.presenter.CatalogPresenter
 import kotlinx.android.synthetic.main.catalog_layout.*
 
-class CatalogActivity : BaseActivity() {
+class CatalogActivity : BaseActivity(), CatalogView {
+
+    private val presenter = CatalogPresenter()
+    private val adapter = CategoryAdapter { category ->
+        presenter.removeItem(category)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +29,12 @@ class CatalogActivity : BaseActivity() {
             }
             startActivityForResult(intent, REQUEST_AUTH)
         }
+
+        categoryRv.layoutManager = LinearLayoutManager(this)
+        categoryRv.adapter = adapter
+
+        presenter.attachView(this)
+        presenter.setData()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -35,6 +48,14 @@ class CatalogActivity : BaseActivity() {
             val isUserAuth = data?.extras?.getBoolean(IS_USER_AUTH)
             Log.d(tag, "onActivityResult ${isUserAuth.toString()}")
         }
+    }
+
+    override fun setCategories(list: List<String>) {
+        adapter.setData(list)
+    }
+
+    override fun removeItem(position: Int) {
+        adapter.notifyItemRemoved(position)
     }
 
     companion object {
