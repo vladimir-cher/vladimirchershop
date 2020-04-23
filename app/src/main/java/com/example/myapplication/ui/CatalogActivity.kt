@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.presenter.CatalogPresenter
+import com.example.myapplication.ui.cart.CartActivity
 import kotlinx.android.synthetic.main.catalog_layout.*
 
 class CatalogActivity : BaseActivity(), CatalogView {
@@ -24,7 +25,7 @@ class CatalogActivity : BaseActivity(), CatalogView {
         Log.d(tag, "savedInt $savedInt")
 
         catalogCheckoutBtn.setOnClickListener {
-            val intent = Intent(this, CheckoutActivity::class.java).apply {
+            val intent = Intent(this, CartActivity::class.java).apply {
                 putExtra(PRODUCT_ID, 1000)
             }
             startActivityForResult(intent, REQUEST_AUTH)
